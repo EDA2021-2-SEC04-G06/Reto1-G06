@@ -34,7 +34,9 @@ assert cf
 Se define la estructura de un catálogo de videos. El catálogo tendrá dos listas, una para los videos, otra para las categorias de
 los mismos.
 """
-
+def initCatalog():
+    catalog = model.newCatalog()
+    return catalog
 # Construccion de modelos
 
 # Funciones para agregar informacion al catalogo
