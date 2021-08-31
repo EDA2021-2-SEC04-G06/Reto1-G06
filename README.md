@@ -1,10 +1,13 @@
+Req. 3 - Nicolas Camargo, 202020782, n.camargop@uniandes.edu.co
+Req. 4 - Juan Manuel Perez, 202021827, jm.perezs1@uniandes.edu.co
+
 #ISIS1225 - Librerias de soporte
 
 Este proyecto contiene los Tipos abstractos de datos, estructuras de datos y algoritmos requeridos por el curso ISIS1225-Estructuras de Datos y Algoritmos
 
 -Lib
-Este directorio contiene todo el código de base que se entrega para el funcionamiento del curso.  Dentro de este directorio encuentran:
-    
+Este directorio contiene todo el código de base que se entrega para el funcionamiento del curso. Dentro de este directorio encuentran:
+
     |-- ADT:  Directorio con los Tipos Abstractos de Datos del curso
 
     |--DataStructures: Directorio con todas las estructuras de datos y archivos auxiliares para su     correcto funcionamiento
@@ -15,4 +18,3 @@ Este directorio contiene todo el código de base que se entrega para el funciona
 
 -Test
 Este directorio contiene las pruebas realizadas a los TADs, Estructuras de Datos y Algoritmos.
-
