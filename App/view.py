@@ -34,10 +34,17 @@ se hace la solicitud al controlador para ejecutar la
 operación solicitada
 """
 
+
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
-    print("2- ")
+    print("2- Catalogo cronologico de los artistas")
+    print("3- Obras de artista por tecnica")
+    print("4- Obras segun nacionalidad del creador")
+    print("5- Calcular costo de transportar todas las obras de un departamento")
+    print("6- Reglas de transporte")
+    print("7- Proponer nueva exposicion en el museo")
+
 
 catalog = None
 
