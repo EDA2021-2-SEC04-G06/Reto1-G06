@@ -17,7 +17,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
+* along withthis program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
 import config as cf
@@ -64,6 +64,10 @@ while True:
         print("Cargando información de los archivos ....")
         catalog=initCatalog()
         loadData(catalog)
+        print('Artistas cargados: ' + str(lt.size(catalog['artists'])))
+        print('Artworks cargados: ' + str(lt.size(catalog['artworks'])))
+        
+        
 
     elif int(inputs[0]) == 2:
         pass
