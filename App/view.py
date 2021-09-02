@@ -76,9 +76,20 @@ while True:
         print('Artistas cargados: ' + str(lt.size(catalog['artworks'])))
         print('Artworks cargados: ' + str(lt.size(catalog['artists'])))
 
-        for artist in lt.iterator(catalog['artists']):
+        print('Artistas finales: '+str(lt.getElement(((catalog['artists'])), lt.size(catalog['artists'])))+
+                str(lt.getElement(((catalog['artists'])), int(lt.size(catalog['artists']))-1))+
+                str(lt.getElement(((catalog['artists'])), int(lt.size(catalog['artists']))-2)))
+
+        print('Artworks finales: '+str(lt.getElement(((catalog['artworks'])), lt.size(catalog['artworks'])))+
+                str(lt.getElement(((catalog['artworks'])), int(lt.size(catalog['artworks']))-1))+
+                str(lt.getElement(((catalog['artworks'])), int(lt.size(catalog['artworks']))-2)))
+
+        """print('Artista: '+str(lt.getElement(((catalog['artists'])), int(lt.size(catalog['artists'])-1))))
+        print('Artista: '+str(lt.getElement(((catalog['artists'])), int(lt.size(catalog['artists'])-2))))"""
+
+        """for artist in lt.iterator(catalog['artists']):
             print('Artista: ' + artist['DisplayName'] +
-                  '  Biografia: ' + artist['ArtistBio'])
+                    '  Biografia: ' + artist['ArtistBio'])"""
 
     elif int(inputs[0]) == 2:
         pass
