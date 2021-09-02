@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 """
  * Copyright 2020, Departamento de sistemas y Computación, Universidad
@@ -97,4 +98,3 @@ while True:
     else:
         sys.exit(0)
 sys.exit(0)
-
