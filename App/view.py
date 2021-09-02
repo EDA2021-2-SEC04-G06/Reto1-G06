@@ -17,7 +17,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
-* along withthis program.  If not, see <http://www.gnu.org/licenses/>.
+ * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
 import config as cf
@@ -34,12 +34,6 @@ se hace la solicitud al controlador para ejecutar la
 operación solicitada
 """
 
-def initCatalog():
-    return controller.initCatalog()
-
-def loadData(catalog):
-    controller.loadData(catalog)
-
 
 def printMenu():
     print("Bienvenido")
@@ -52,6 +46,20 @@ def printMenu():
     print("7- Proponer nueva exposicion en el museo")
 
 
+def initCatalog():
+    """
+    Inicializa el catalogo de libros
+    """
+    return controller.initCatalog()
+
+
+def loadData(catalog):
+    """
+    Carga los libros en la estructura de datos
+    """
+    controller.loadData(catalog)
+
+
 catalog = None
 
 """
@@ -62,12 +70,14 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
-        catalog=initCatalog()
+        catalog = initCatalog()
         loadData(catalog)
-        print('Artistas cargados: ' + str(lt.size(catalog['artists'])))
-        print('Artworks cargados: ' + str(lt.size(catalog['artworks'])))
-        
-        
+        print('Artistas cargados: ' + str(lt.size(catalog['artworks'])))
+        print('Artworks cargados: ' + str(lt.size(catalog['artists'])))
+
+        for artist in lt.iterator(catalog['artists']):
+            print('Artista: ' + artist['DisplayName'] +
+                  '  Biografia: ' + artist['ArtistBio'])
 
     elif int(inputs[0]) == 2:
         pass
