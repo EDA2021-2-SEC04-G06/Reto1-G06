@@ -68,7 +68,7 @@ while True:
         print('Artworks cargados: ' + str(lt.size(catalog['artworks'])))
         
         
-
+        
     elif int(inputs[0]) == 2:
         pass
 
