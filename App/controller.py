@@ -31,24 +31,28 @@ El controlador se encarga de mediar entre la vista y el modelo.
 
 # Inicialización del Catálogo de libros
 
+
 def initCatalog():
     catalog = model.newCatalog()
     return catalog
 
 # Funciones para la carga de datos
 
+
 def loadData(catalog):
     loadArtworks(catalog)
-    loadArtists(catalog)    
+    loadArtists(catalog)
+
 
 def loadArtists(catalog):
-    artistsfile=cf.data_dir + 'Artists-utf8-small.csv'
+    artistsfile = cf.data_dir + 'Artists-utf8-small.csv'
     input_file = csv.DictReader(open(artistsfile, encoding='utf-8'))
     for artist in input_file:
         model.addArtists(catalog, artist)
 
+
 def loadArtworks(catalog):
-    artworksfile=cf.data_dir + 'Artworks-utf8-small.csv'
+    artworksfile = cf.data_dir + 'Artworks-utf8-small.csv'
     input_file = csv.DictReader(open(artworksfile, encoding='utf-8'))
     for artwork in input_file:
         model.addArtworks(catalog, artwork)
@@ -56,3 +60,11 @@ def loadArtworks(catalog):
 # Funciones de ordenamiento
 
 # Funciones de consulta sobre el catálogo
+
+
+def getLastArtists(catalog, number):
+    """
+    Retorna los ultimos artistas
+    """
+    lastArtists = model.getLastArtists(catalog, number)
+    return lastArtists

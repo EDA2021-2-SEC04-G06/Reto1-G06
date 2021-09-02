@@ -34,8 +34,8 @@ assert cf
 Se define la estructura de un catálogo de videos. El catálogo tendrá dos listas, una para los videos, otra para las categorias de
 los mismos.
 """
-
 # Construccion de modelos
+
 
 def newCatalog():
     catalog = {'artworks': None,
@@ -49,13 +49,13 @@ def newCatalog():
 
 # Funciones para agregar informacion al catalogo
 
+
 def addArtworks(catalog, artwork):
     lt.addLast(catalog['artworks'], artwork)
 
     """constitutent_ids = artwork['ConstituentID'].split(",")
     for constitutentid in constitutent_ids:
         addArtworkArtist(catalog, constitutentid.strip(), artwork)
-
 def addArtworkArtist(catalog, constitutentid, artwork):
     constitutent_id_lista = catalog['artists']
     posterior_id = lt.isPresent(constitutent_id_lista, constitutentid)
@@ -66,25 +66,37 @@ def addArtworkArtist(catalog, constitutentid, artwork):
         lt.addLast(constitutent_id_lista, constitutent_id_agregar)
     lt.addLast(constitutent_id_agregar['artworks'], artwork)"""
 
+
 def addArtists(catalog, artist):
     lt.addLast(catalog['artists'], artist)
-    
+
 
 # Funciones para creacion de datos
 
 def newArtista(constitutentid):
-    datos_artista = {'ConstituentID': "", 'DisplayName': None, 'ArtistBio':None, 'Nationality': None, 
-             'Gender':None,'BeginDate':None,'EndDate':None, 'Wiki QID':None, 'ULAN':None,
-            'artworks': None}
+    datos_artista = {'ConstituentID': "", 'DisplayName': None, 'ArtistBio': None, 'Nationality': None,
+                     'Gender': None, 'BeginDate': None, 'EndDate': None, 'Wiki QID': None, 'ULAN': None,
+                     'artworks': None}
     datos_artista['ConstituentID'] = constitutentid
     datos_artista['artworks'] = lt.newList('ARRAY_LIST')
     return datos_artista
 
 
-
 # Funciones de consulta
 
+def getLastArtists(catalog, number):
+    """
+    Retorna los ultimos artistas
+    """
+    artistas = catalog['artists']
+    lastArtists = lt.newList()
+    for cont in range(1, number+1):
+        artist = lt.getElement(artistas, cont)
+        lt.addLast(lastArtists, artist)
+    return lastArtists
+
 # Funciones utilizadas para comparar elementos dentro de una lista
+
 
 def compareauthors(authorname1, author):
     if (authorname1.lower() in author['name'].lower()):
