@@ -75,7 +75,6 @@ while True:
         loadData(catalog)
         print('Artistas cargados: ' + str(lt.size(catalog['artworks'])))
         print('Artworks cargados: ' + str(lt.size(catalog['artists'])))
-
         print('Artistas finales: '+str(lt.getElement(((catalog['artists'])), lt.size(catalog['artists'])))+
                 str(lt.getElement(((catalog['artists'])), int(lt.size(catalog['artists']))-1))+
                 str(lt.getElement(((catalog['artists'])), int(lt.size(catalog['artists']))-2)))
@@ -92,6 +91,11 @@ while True:
                     '  Biografia: ' + artist['ArtistBio'])"""
 
     elif int(inputs[0]) == 2:
+        anho_inicial=input("Ingrese el año incial: ")
+        anho_final=input("Ingrese el año final: ")
+        controller.requerimiento_1(catalog, anho_inicial, anho_final)
+
+    elif int(inputs[0]==3):
         pass
 
     else:
