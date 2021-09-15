@@ -25,9 +25,15 @@
  """
 
 
+from os import times
 import config as cf
 from DISClib.ADT import list as lt
+import time
 from DISClib.Algorithms.Sorting import shellsort as sa
+from DISClib.Algorithms.Sorting import insertionsort as si
+from DISClib.Algorithms.Sorting import mergesort as sm
+from DISClib.Algorithms.Sorting import quicksort as sq
+from datetime import datetime
 assert cf
 
 """
@@ -37,14 +43,18 @@ los mismos.
 # Construccion de modelos
 
 
-def newCatalog():
+def newCatalog(estructura):
     catalog = {'artworks': None,
                'artists': None}
-
-    catalog['artworks'] = lt.newList()
-    catalog['artists'] = lt.newList('ARRAY_LIST',
-                                    cmpfunction=compareauthors)
-
+    
+    if estructura == "A":
+        catalog['artworks'] = lt.newList()
+        catalog['artists'] = lt.newList('ARRAY_LIST')
+    
+    elif estructura == "L":
+        catalog['artworks'] = lt.newList()
+        catalog['artists'] = lt.newList('SNGLE_LIST')
+                                    
     return catalog
 
 # Funciones para agregar informacion al catalogo
@@ -95,12 +105,72 @@ def getLastArtists(catalog, number):
         lt.addLast(lastArtists, artist)
     return lastArtists
 
+'''def requerimiento_1(catalog,anho_inicial,anho_final):
+    artistas=catalog['artists']
+    artistas_rango=lt.newlist()
+    for artista in artistas:
+        nacimiento=artista['BeginDate']
+        if nacimiento>=anho_inicial and nacimiento<=anho_final:'''
+            
 # Funciones utilizadas para comparar elementos dentro de una lista
+def cmpArtworkByDateAcquired(artwork1, artwork2):
+    fecha_artwork1=str(artwork1['DateAcquired'])
+    fecha_artwork2=str(artwork2['DateAcquired'])
+    if len(fecha_artwork1)<10:
+        fecha_artwork1=str(datetime.today())
+    if len(fecha_artwork2)<10:  
+        fecha_artwork2=str(datetime.today())
 
-
-def compareauthors(authorname1, author):
-    if (authorname1.lower() in author['name'].lower()):
+    anho_artwork1=float(fecha_artwork1[:4])
+    mes_artwork1=float(fecha_artwork1[5:7])
+    dia_artwork1=float(fecha_artwork1[8:10])
+    anho_artwork2=float(fecha_artwork2[:4])
+    mes_artwork2=float(fecha_artwork2[5:7])
+    dia_artwork2=float(fecha_artwork2[8:10])
+    if fecha_artwork1==fecha_artwork2:
         return 0
-    return -1
+    elif anho_artwork1<anho_artwork2:
+        return 1
+    elif anho_artwork1>anho_artwork2:
+        return 0
+    elif anho_artwork1==anho_artwork2:
+        if mes_artwork1<mes_artwork2:
+            return 1
+        elif mes_artwork1>mes_artwork2:
+            return 0
+        elif dia_artwork1==mes_artwork2:
+            if dia_artwork1<dia_artwork2:
+                return 1
+            elif dia_artwork1>dia_artwork2:
+                return 0
+
+
+
 
 # Funciones de ordenamiento
+
+def sortArtwork(catalog, muestra, algoritmo):
+    sub_list=lt.subList(catalog['artworks'],1,muestra)
+    sub_list=sub_list.copy()
+    if algoritmo == "I":
+        start_time = time.process_time()
+        sorted_list=si.sort(sub_list,cmpArtworkByDateAcquired)
+        stop_time = time.process_time()
+        elapsed_time_mseg=(stop_time - start_time)*1000
+    elif algoritmo=="S":
+        start_time=time.process_time()
+        sorted_list=sa.sort(sub_list,cmpArtworkByDateAcquired)
+        stop_time=time.process_time
+        elapsed_time_mseg=(stop_time - start_time)*1000
+    elif algoritmo == "M":
+        start_time=time.process_time()
+        sorted_list=sm.sort(sub_list,cmpArtworkByDateAcquired)
+        stop_time=time.process_time
+        elapsed_time_mseg=(stop_time - start_time)*1000
+    elif algoritmo == "Q":
+        start_time=time.process_time()
+        sorted_list=sq.sort(sub_list,cmpArtworkByDateAcquired)
+        stop_time=time.process_time()
+        elapsed_time_mseg=(stop_time - start_time)*1000
+    return elapsed_time_mseg, sorted_list
+

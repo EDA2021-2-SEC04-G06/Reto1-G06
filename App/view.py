@@ -47,11 +47,11 @@ def printMenu():
     print("7- Proponer nueva exposicion en el museo")
 
 
-def initCatalog():
+def initCatalog(estructura):
     """
     Inicializa el catalogo de libros
     """
-    return controller.initCatalog()
+    return controller.initCatalog(estructura)
 
 
 def loadData(catalog):
@@ -70,8 +70,10 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
+        estructura=input('Seleccione el tipo de repersentación de lista\n'+
+                            '"A" para ARRAY_LIST o "L" para LINKED LIST : ')
         print("Cargando información de los archivos ....")
-        catalog = initCatalog()
+        catalog = initCatalog(estructura)
         loadData(catalog)
         print('Artistas cargados: ' + str(lt.size(catalog['artworks'])))
         print('Artworks cargados: ' + str(lt.size(catalog['artists'])))
@@ -91,11 +93,28 @@ while True:
                     '  Biografia: ' + artist['ArtistBio'])"""
 
     elif int(inputs[0]) == 2:
-        anho_inicial=input("Ingrese el año incial: ")
-        anho_final=input("Ingrese el año final: ")
-        controller.requerimiento_1(catalog, anho_inicial, anho_final)
+        '''anho_inicial=input("Ingrese el año incial: ")
+        anho_final=input("Ingrese el año final: ")'''
+        '''controller.requerimiento_1(catalog, anho_inicial, anho_final)'''
+        muestra=input('Ingrese el tamaño de la muestra: ')
+        alogritmo=input('Seleccione el tipo de Algoritmo \n'
+                                            + '"I" para Insertion, "S" para Shell, "M" para Merge o'
+                                            + '"Q" para Quick sort: ' )
+        resultado = controller.sortArtwork(catalog, int(muestra), alogritmo)
+        print("Para la muestra de", muestra, " elementos, el tiempo (mseg) es: ",
+                                                    str(resultado[0]))
+        
+    elif int(inputs[0])==3:
+        muestra=input('Ingrese el tamaño de la muestra: ')
+        alogritmo=input('Seleccione el tipo de Algoritmo \n'
+                                            + '"I" para Insertion, "S" para Shell, "M" para Merge o'
+                                            + '"Q" para Quick sort: ' )
+        resultado = controller.sortArtwork(catalog, int(muestra), alogritmo)
+        print("Para la muestra de", muestra, " elementos, el tiempo (mseg) es: ",
+                                                    str(resultado[0]))
+            
+    elif int(inputs[0]==4):  
 
-    elif int(inputs[0]==3):
         pass
 
     else:
