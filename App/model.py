@@ -156,21 +156,21 @@ def sortArtwork(catalog, muestra, algoritmo):
         start_time = time.process_time()
         sorted_list=si.sort(sub_list,cmpArtworkByDateAcquired)
         stop_time = time.process_time()
-        elapsed_time_mseg=(stop_time - start_time)*1000
+        elapsed_time_mseg=(stop_time - start_time) * 1000
     elif algoritmo=="S":
         start_time=time.process_time()
         sorted_list=sa.sort(sub_list,cmpArtworkByDateAcquired)
-        stop_time=time.process_time
-        elapsed_time_mseg=(stop_time - start_time)*1000
+        stop_time=time.process_time()
+        elapsed_time_mseg=(stop_time - start_time) * 1000
     elif algoritmo == "M":
         start_time=time.process_time()
         sorted_list=sm.sort(sub_list,cmpArtworkByDateAcquired)
-        stop_time=time.process_time
-        elapsed_time_mseg=(stop_time - start_time)*1000
+        stop_time=time.process_time()
+        elapsed_time_mseg=(stop_time - start_time) * 1000
     elif algoritmo == "Q":
         start_time=time.process_time()
         sorted_list=sq.sort(sub_list,cmpArtworkByDateAcquired)
         stop_time=time.process_time()
-        elapsed_time_mseg=(stop_time - start_time)*1000
+        elapsed_time_mseg=(stop_time - start_time) * 1000
     return elapsed_time_mseg, sorted_list
 

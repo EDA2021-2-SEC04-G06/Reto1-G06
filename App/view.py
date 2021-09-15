@@ -61,6 +61,8 @@ def loadData(catalog):
     controller.loadData(catalog)
 
 
+
+
 catalog = None
 
 """
@@ -75,8 +77,8 @@ while True:
         print("Cargando información de los archivos ....")
         catalog = initCatalog(estructura)
         loadData(catalog)
-        print('Artistas cargados: ' + str(lt.size(catalog['artworks'])))
-        print('Artworks cargados: ' + str(lt.size(catalog['artists'])))
+        print('Artistas cargados: ' + str(lt.size(catalog['artists'])))
+        print('Artworks cargados: ' + str(lt.size(catalog['artworks'])))
         print('Artistas finales: '+str(lt.getElement(((catalog['artists'])), lt.size(catalog['artists'])))+
                 str(lt.getElement(((catalog['artists'])), int(lt.size(catalog['artists']))-1))+
                 str(lt.getElement(((catalog['artists'])), int(lt.size(catalog['artists']))-2)))
@@ -112,7 +114,7 @@ while True:
         resultado = controller.sortArtwork(catalog, int(muestra), alogritmo)
         print("Para la muestra de", muestra, " elementos, el tiempo (mseg) es: ",
                                                     str(resultado[0]))
-            
+                                                                
     elif int(inputs[0]==4):  
 
         pass
