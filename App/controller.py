@@ -42,7 +42,8 @@ def initCatalog(estructura):
 def loadData(catalog):
     loadArtworks(catalog)
     loadArtists(catalog)
-
+    loadObrasPorArtistas(catalog)
+    loadArtistasPorObras(catalog)
 
 def loadArtists(catalog):
     artistsfile = cf.data_dir + 'Artists-utf8-small.csv'
@@ -50,17 +51,26 @@ def loadArtists(catalog):
     for artist in input_file:
         model.addArtists(catalog, artist)
 
-
 def loadArtworks(catalog):
     artworksfile = cf.data_dir + 'Artworks-utf8-small.csv'
     input_file = csv.DictReader(open(artworksfile, encoding='utf-8'))
     for artwork in input_file:
         model.addArtworks(catalog, artwork)
 
+def loadObrasPorArtistas(catalog):
+    model.addObrasPorArtistas(catalog)
+
+def loadArtistasPorObras(catalog):
+    model.addArtistasPorObras(catalog)
+    
 # Funciones de ordenamiento
 
-def sortArtwork(catalog, muestra, algoritmo):
-    return model.sortArtwork(catalog, muestra, algoritmo)
+def sortArtwork(catalog, anho_inicial, anho_final, algoritmo):
+    return model.sortArtwork(catalog, anho_inicial, anho_final, algoritmo)
+
+def sortArtist(catalog, anho_inicial, anho_final, algoritmo):
+    artistas_rango=model.sortArtist(catalog,anho_inicial,anho_final, algoritmo)
+    return artistas_rango
 
 # Funciones de consulta sobre el catálogo
 
@@ -71,7 +81,3 @@ def getLastArtists(catalog, number):
     """
     lastArtists = model.getLastArtists(catalog, number)
     return lastArtists
-
-def requerimiento_1(catalog, anho_inicial, anho_final):
-    artistas_rango=model.requerimiento_1(catalog,anho_inicial,anho_final)
-    return artistas_rango
