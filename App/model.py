@@ -168,46 +168,7 @@ def newArtist2(constituentid):
     artist['ConstituentID'] = constituentid
     artist['artworks'] = lt.newList("ARRAY_LIST")
     return artist
-# Funciones de consulta
 
-
-def obrasPorTecnica(catalog, nombre):
-    sub_list = catalog['artists'].copy()
-    listaArtists = sub_list['elements']
-    sub_list2 = catalog['obrasPorArtistas'].copy()
-    listaArtworks = sub_list2['elements']
-    id = ''
-    totalObras = 0
-    totalTecnicaslist = []
-    totalTecnicas = 0
-    tecnicaMasUsada = ''
-    obrasTecnicaMasUsada = []
-    tecnica = ''
-
-    for each in listaArtists:
-        if each['DisplayName'] == nombre:
-            id = each['ConstituentID']
-
-    for each in listaArtworks:
-        if each['ConstituentID'] == id:
-            lista = each['artworks']
-            artworks = lista['elements']
-            for cadaObra in artworks:
-                totalObras += 1
-                tecnica = cadaObra['Medium']
-                if tecnica not in totalTecnicaslist:
-                    totalTecnicas += 1
-                totalTecnicaslist.append(tecnica)
-
-    tecnicaMasUsada = max(set(totalTecnicaslist), key=totalTecnicaslist.count)
-    for obras in artworks:
-        if obras['Medium'] == tecnicaMasUsada:
-            info = {'Titulo': obras['Title'],
-                    'Fecha': obras['Date'],
-                    'Medio': obras['Medium'],
-                    'Dimensiones': obras['Dimensions']}
-        obrasTecnicaMasUsada.append(info)
-    return totalObras, totalTecnicas, tecnicaMasUsada, obrasTecnicaMasUsada
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 
@@ -395,3 +356,46 @@ def sortArtist(catalog, anho_inicial, anho_final, algoritmo):
     tamanhoSortedList2 = lt.size(sorted_list_2)
 
     return elapsed_time_mseg, sorted_list_2, tamanhoSortedList2
+
+
+# Funciones de consulta
+
+
+def obrasPorTecnica(catalog, nombre):
+    sub_list = catalog['artists'].copy()
+    listaArtists = sub_list['elements']
+    sub_list2 = catalog['obrasPorArtistas'].copy()
+    listaArtworks = sub_list2['elements']
+    id = ''
+    totalObras = 0
+    totalTecnicaslist = []
+    totalTecnicas = 0
+    tecnicaMasUsada = ''
+    obrasTecnicaMasUsada = []
+    tecnica = ''
+
+    for each in listaArtists:
+        if each['DisplayName'] == nombre:
+            id = each['ConstituentID']
+
+    for each in listaArtworks:
+        if each['ConstituentID'] == id:
+            lista = each['artworks']
+            artworks = lista['elements']
+            for cadaObra in artworks:
+                totalObras += 1
+                tecnica = cadaObra['Medium']
+                if tecnica not in totalTecnicaslist:
+                    totalTecnicas += 1
+                totalTecnicaslist.append(tecnica)
+
+    tecnicaMasUsada = max(set(totalTecnicaslist), key=totalTecnicaslist.count)
+    for obras in artworks:
+        if obras['Medium'] == tecnicaMasUsada:
+            info = {'Titulo': obras['Title'],
+                    'Fecha': obras['Date'],
+                    'Medio': obras['Medium'],
+                    'Dimensiones': obras['Dimensions']}
+            obrasTecnicaMasUsada.append(info)
+
+    return totalObras, totalTecnicas, tecnicaMasUsada, obrasTecnicaMasUsada
