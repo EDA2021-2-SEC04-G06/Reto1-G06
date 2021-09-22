@@ -126,6 +126,8 @@ def addNacionalidades(catalog):
     for obra in lt.iterator(catalog['artistasPorObras']):
         for artista in lt.iterator(obra['artists']):
             nacionalidad=str(artista['Nationality'])
+            if nacionalidad=='':
+                nacionalidad='Nationality unknown'
             addNationality(catalog,nacionalidad,obra)
 
 def addNationality(catalog,nacionalidad,obra):
@@ -205,7 +207,7 @@ def cmpConstituentID(id1, lista):
     return -1
 
 def cmpNacionalidad(nacionalidad1,lista):
-    if nacionalidad1 == lista['Nationality']:
+    if nacionalidad1 == str(lista['Nationality']):
         return 0
     return 1
 
