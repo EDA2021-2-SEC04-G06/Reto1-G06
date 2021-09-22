@@ -44,6 +44,7 @@ def loadData(catalog):
     loadArtists(catalog)
     loadObrasPorArtistas(catalog)
     loadArtistasPorObras(catalog)
+    loadnacionalidades(catalog)
 
 
 def loadArtists(catalog):
@@ -66,6 +67,9 @@ def loadObrasPorArtistas(catalog):
 
 def loadArtistasPorObras(catalog):
     model.addArtistasPorObras(catalog)
+
+def loadnacionalidades(catalog):
+    model.addNacionalidades(catalog)
 
 # Funciones de ordenamiento
 
@@ -93,3 +97,7 @@ def getLastArtists(catalog, number):
 def obrasPorTecnica(catalog, nombre):
     id1 = model.obrasPorTecnica(catalog, nombre)
     return id1
+
+def obrasPorNacionalidad(catalog,algoritmo):
+    obrasnacionalidad=model.obrasPorNacionalidad(catalog,algoritmo)
+    return obrasnacionalidad

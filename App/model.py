@@ -48,7 +48,8 @@ def newCatalog(estructura):
     catalog = {'artworks': None,
                'artists': None,
                'obrasPorArtistas': None,
-               'artistasPorObras': None}
+               'artistasPorObras': None,
+               'nacionalidades':None}
 
     if estructura == "A":
         catalog['artworks'] = lt.newList()
@@ -57,6 +58,7 @@ def newCatalog(estructura):
             'ARRAY_LIST', cmpfunction=cmpConstituentID)
         catalog['artistasPorObras'] = lt.newList(
             "ARRAY_LIST", cmpfunction=cmpConstituentID)
+        catalog['nacionalidades']=lt.newList('ARRAY_LIST',cmpfunction=cmpNacionalidad)
 
     elif estructura == "L":
         catalog['artworks'] = lt.newList()
@@ -65,6 +67,7 @@ def newCatalog(estructura):
             'SINGLE_LINKED', cmpfunction=cmpConstituentID)
         catalog['artistasPorObras'] = lt.newList(
             "SINGLE_LINKED", cmpfunction=cmpConstituentID)
+        catalog['nacionalidades']=lt.newList('SINGLE_LINKED',cmpfunction=cmpNacionalidad)
 
     return catalog
 # Funciones para agregar informacion al catalogo
@@ -119,6 +122,24 @@ def addArtistaObra(catalog, constituentid, artista):
         artwork = lt.getElement(obras, posartista)
         lt.addLast(artwork['artists'], artista)
 
+def addNacionalidades(catalog):
+    for obra in lt.iterator(catalog['artistasPorObras']):
+        for artista in lt.iterator(obra['artists']):
+            nacionalidad=str(artista['Nationality'])
+            addNationality(catalog,nacionalidad,obra)
+
+def addNationality(catalog,nacionalidad,obra):
+    nacionalidades=catalog['nacionalidades']
+    posnacionalidad = lt.isPresent(nacionalidades,nacionalidad)
+    if posnacionalidad>0:
+        nacionalidad2 = lt.getElement(nacionalidades,posnacionalidad)
+        lt.addLast(nacionalidad2['obrasyArtistas'],obra)
+        nacionalidad2['conteo']=nacionalidad2['conteo']+1
+    else:
+        nacionalidad2=newNationality(nacionalidad)
+        lt.addLast(nacionalidades,nacionalidad2)
+        lt.addLast(nacionalidad2['obrasyArtistas'],obra)
+
 # Funciones para creacion de datos
 
 
@@ -169,6 +190,11 @@ def newArtist2(constituentid):
     artist['artworks'] = lt.newList("ARRAY_LIST")
     return artist
 
+def newNationality(nacionalidad):
+    nacionalidadAgregar={'Nationality':"", 'conteo':1, 'obrasyArtistas':{}}
+    nacionalidadAgregar['Nationality']=nacionalidad
+    nacionalidadAgregar['obrasyArtistas']=lt.newList('ARRAY_LIST')
+    return nacionalidadAgregar
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 
@@ -178,6 +204,10 @@ def cmpConstituentID(id1, lista):
         return 0
     return -1
 
+def cmpNacionalidad(nacionalidad1,lista):
+    if nacionalidad1 == lista['Nationality']:
+        return 0
+    return 1
 
 def cmpArtistByBeginDate(artist1, artist2):
     fecha_artist1 = int(artist1['BeginDate'])
@@ -219,6 +249,13 @@ def cmpArtworkByDateAcquired(artwork1, artwork2):
             elif dia_artwork1 > dia_artwork2:
                 return 0
 
+def cmpObrasNacionalidad(nacionalidad1, nacionalidad2):
+    conteo1=nacionalidad1['conteo']
+    conteo2=nacionalidad2['conteo']
+    if conteo1>conteo2:
+        return 1
+    else:
+        return 0
 
 # Funciones de ordenamiento
 
@@ -295,18 +332,17 @@ def sortArtwork(catalog, fecha_inicial, fecha_final, algoritmo):
         sorted_list, pos_inicial, pos_final-pos_inicial+1)
 
     contador = 0
-    conteo_artistas = 0
 
     for obra in lt.iterator(sorted_list2):
         tipoCompra = obra['CreditLine']
         if "Purchase" in tipoCompra:
             contador += 1
-
-        conteo_artistas += lt.size(obra['artists'])
+        elif 'purchase' in tipoCompra:
+            contador += 1
 
     tamanhoSortedList2 = lt.size(sorted_list2)
 
-    return elapsed_time_mseg, sorted_list2, tamanhoSortedList2, contador, conteo_artistas
+    return elapsed_time_mseg, sorted_list2, tamanhoSortedList2, contador
 
 
 def sortArtist(catalog, anho_inicial, anho_final, algoritmo):
@@ -350,12 +386,38 @@ def sortArtist(catalog, anho_inicial, anho_final, algoritmo):
             pos_final = j
         j += 1
 
-    sorted_list_2 = lt.subList(
-        sorted_list, pos_inicial, pos_final-pos_inicial+1)
+    sorted_list_2 = lt.subList(sorted_list, pos_inicial, pos_final-pos_inicial+1)
 
     tamanhoSortedList2 = lt.size(sorted_list_2)
 
     return elapsed_time_mseg, sorted_list_2, tamanhoSortedList2
+
+
+def mayorConteo(sub_list,algoritmo):
+
+    if algoritmo == "I":
+        start_time = time.process_time()
+        sorted_list = si.sort(sub_list, cmpObrasNacionalidad)
+        stop_time = time.process_time()
+        elapsed_time_mseg = (stop_time - start_time) * 1000
+    elif algoritmo == "S":
+        start_time = time.process_time()
+        sorted_list = sa.sort(sub_list, cmpObrasNacionalidad)
+        stop_time = time.process_time()
+        elapsed_time_mseg = (stop_time - start_time) * 1000
+    elif algoritmo == "M":
+        start_time = time.process_time()
+        sorted_list = sm.sort(sub_list, cmpObrasNacionalidad)
+        stop_time = time.process_time()
+        elapsed_time_mseg = (stop_time - start_time) * 1000
+    elif algoritmo == "Q":
+        start_time = time.process_time()
+        sorted_list = sq.sort(sub_list, cmpObrasNacionalidad)
+        stop_time = time.process_time()
+        elapsed_time_mseg = (stop_time - start_time) * 1000
+
+    
+    return elapsed_time_mseg ,sorted_list
 
 
 # Funciones de consulta
@@ -399,3 +461,12 @@ def obrasPorTecnica(catalog, nombre):
             obrasTecnicaMasUsada.append(info)
 
     return totalObras, totalTecnicas, tecnicaMasUsada, obrasTecnicaMasUsada
+
+def obrasPorNacionalidad(catalog,algoritmo):
+    subList=catalog['nacionalidades'].copy()
+    sortedList=mayorConteo(subList,algoritmo)
+    
+            
+    return sortedList[1]
+            
+

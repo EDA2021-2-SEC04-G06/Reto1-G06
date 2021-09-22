@@ -80,6 +80,8 @@ def printPrimeros3Artistas(lista, size):
                   + anho_nacimiento + ", Año de Fallecimiento: " + anho_fallecido
                   + ", Nacionalidad: " + nacionalidad + ", Genero: " + genero)
             i += 1
+        print("...")
+
     elif size >= 1:
         if size == 1:
             print("El primer Artista es: ")
@@ -98,6 +100,7 @@ def printPrimeros3Artistas(lista, size):
             print(str(i)+". " + "Artista: " + nombre + ", Año de Nacimiento: "
                   + anho_nacimiento + ", Año de Fallecimiento: " + anho_fallecido
                   + ", Nacionalidad: " + nacionalidad + ", Genero: " + genero)
+        print("...")
 
     else:
         return None
@@ -123,9 +126,9 @@ def ultimos3Artistas(lista, size):
 
     elif size >= 1:
         if size == 1:
-            print("El ultimo Artista es: ")
+            print("El último Artista es: ")
         if size == 2:
-            print("Los ultimos 2 Artistas son: ")
+            print("Los últimos 2 Artistas son: ")
         i = 1
         while i <= size:
             artistas = lt.getElement(lista, i)
@@ -143,24 +146,154 @@ def ultimos3Artistas(lista, size):
         return None
 
 
-def primeros3artistasyobras(lista, size):
+def printprimeros3artistasyobras(lista, size):
     if size >= 3:
-        print("Los primeros 3 Artistas son: ")
+        print("Las primeras 3 Obras son: ")
         i = 1
-        while i <= size:
-            artistas = lt.getElement(lista, i)
-            titulo = lista['Title']
-            nombre = artistas['DisplayName']
-            fecha = lista['Date']
-            medio = artistas['Medium']
-            dimensiones = artistas['Dimensions']
-            if anho_fallecido == "0":
-                anho_fallecido = "Sigue vivo o se desconoce su muerte"
-            print(str(i)+". " + "Titulo:" + titulo + "Artista: " + nombre + ", Fecha: "
-                  + fecha + ", Medio " + medio
+        while i <= 3:
+            obra = lt.getElement(lista, i)
+            titulo = obra['Title']
+            fecha = obra['Date']
+            medio = obra['Medium']
+            dimensiones = obra['Dimensions']
+            cadenaArtista=""
+            for artistas in lt.iterator(obra['artists']):
+                artista=artistas['DisplayName']
+                if cadenaArtista=="":
+                    cadenaArtista+=artista
+                else:
+                    cadenaArtista+=", "+artista
+            if fecha=="":
+                fecha="Unknown"
+            if medio=="":
+                medio="Unknown"
+            if dimensiones=="":
+                dimensiones='Unknown'     
+            if cadenaArtista=="":
+                cadenaArtista="Unknown"   
+
+            print(str(i)+". " + "Titulo: " + titulo + ", Artista(s): " + cadenaArtista + ", Fecha: "
+                  + fecha + ", Medio: " + medio
                   + ", Dimensiones: " + dimensiones)
             i += 1
+        print('...')
 
+    elif size >= 1:
+        if size == 1:
+            print("La primera obra es: ")
+        if size == 2:
+            print("Las primeras 2 Artistas son: ")
+        i = 1
+        while i <= size:
+            obra = lt.getElement(lista, i)
+            titulo = obra['Title']
+            fecha = obra['Date']
+            medio = obra['Medium']
+            dimensiones = obra['Dimensions']
+            cadenaArtista=""
+            for artistas in lt.iterator(obra['artists']):
+                artista=artistas['DisplayName']
+                if cadenaArtista=="":
+                    cadenaArtista+=artista
+                else:
+                    cadenaArtista+=", "+artista
+
+            if fecha=="":
+                fecha="Unknown"
+            if medio=="":
+                medio="Unknown"
+            if dimensiones=="":
+                dimensiones='Unknown'     
+            if cadenaArtista=="":
+                cadenaArtista="Unknown"  
+            
+            print(str(i)+". " + "Titulo:" + titulo + ", Artista(s): " + cadenaArtista + ", Fecha: "
+                  + fecha + ", Medio: " + medio
+                  + ", Dimensiones: " + dimensiones)
+            i += 1
+        print('...')
+    
+    else:
+        return None
+
+def printUltimos3ArtistasyObras(lista,size):
+    if size >= 3:
+        print("Los últimos 3 Artistas son: ")
+        i = size-2
+        while i <= size:
+            obra = lt.getElement(lista, i)
+            titulo = obra['Title']
+            fecha = obra['Date']
+            medio = obra['Medium']
+            dimensiones = obra['Dimensions']
+            cadenaArtista=""
+            for artistas in lt.iterator(obra['artists']):
+                artista=artistas['DisplayName']
+                if cadenaArtista=="":
+                    cadenaArtista+=artista
+                else:
+                    cadenaArtista+=", "+artista
+
+            if fecha=="":
+                fecha="Unknown"
+            if medio=="":
+                medio="Unknown"
+            if dimensiones=="":
+                dimensiones='Unknown'     
+            if cadenaArtista=="":
+                cadenaArtista="Unknown"  
+            
+            print(str(i)+". " + "Titulo:" + titulo + ", Artista(s): " + cadenaArtista + ", Fecha: "
+                  + fecha + ", Medio: " + medio
+                  + ", Dimensiones: " + dimensiones)
+            i += 1
+    elif size >= 1:
+        if size == 1:
+            print("La última Obra es: ")
+        if size == 2:
+            print("Los últimos 2 Artistas son: ")
+        i=1
+        while i<=size:
+            obra = lt.getElement(lista, i)
+            titulo = obra['Title']
+            fecha = obra['Date']
+            medio = obra['Medium']
+            dimensiones = obra['Dimensions']
+            cadenaArtista=""
+            for artistas in lt.iterator(obra['artists']):
+                artista=artistas['DisplayName']
+                if cadenaArtista=="":
+                    cadenaArtista+=artista
+                else:
+                    cadenaArtista+=", "+artista
+
+            if fecha=="":
+                fecha="Unknown"
+            if medio=="":
+                medio="Unknown"
+            if dimensiones=="":
+                dimensiones='Unknown'     
+            if cadenaArtista=="":
+                cadenaArtista="Unknown"  
+            
+            print(str(i)+". " + "Titulo:" + titulo + ", Artista(s): " + cadenaArtista + ", Fecha: "
+                  + fecha + ", Medio: " + medio
+                  + ", Dimensiones: " + dimensiones)
+            i += 1
+    else:
+        None
+
+def printTOP10(lista):
+    size=lt.size(lista)
+    if size>10:
+        print("Los primeros ", str(10), " paises ordenados son: ")
+        i = 1
+        while i <= 10:
+            nacionalidades=lt.getElement(lista,i)
+            nacionalidad=nacionalidades['Nationality']
+            conteo=nacionalidades['conteo']
+            print(str(i)+"." + ' Nacionalidad: ' + nacionalidad + ', Número de obras: '+str(conteo))
+            i+=1
 
 catalog = None
 
@@ -204,7 +337,6 @@ while True:
         print("\nEl número de Artistas nacidos entre " + anho_inicial + " y " + anho_final
               + " es: " + str(resultado[2]))
         printPrimeros3Artistas(resultado[1], resultado[2])
-        print("...")
         ultimos3Artistas(resultado[1], resultado[2])
 
     elif int(inputs[0]) == 3:
@@ -217,6 +349,8 @@ while True:
             catalog, anho_inicial, anho_final, alogritmo)
         print('\nNúmero total de obras en el rango: ' + str(resultado[2]))
         print('Número total de compras: '+str(resultado[3]))
+        printprimeros3artistasyobras(resultado[1],resultado[2])
+        printUltimos3ArtistasyObras(resultado[1],resultado[2])
 
     elif int(inputs[0]) == 4:
         nombre_artista = input('\nIngrese el nombre del artista: ')
@@ -226,6 +360,13 @@ while True:
         print('Tecnica mas utilizada: '+str(resultado[2]))
         print('Listado de obras de la tecnica mas utilizada: ' +
               str(resultado[3]))
+
+    elif int(inputs[0]) == 5:
+        alogritmo = input('Seleccione el tipo de Algoritmo \n'
+                          + '"I" para Insertion, "S" para Shell, "M" para Merge o'
+                          + '"Q" para Quick sort: ')
+        resultado=controller.obrasPorNacionalidad(catalog,alogritmo)
+        printTOP10(resultado)
 
     else:
         sys.exit(0)
