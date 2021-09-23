@@ -156,21 +156,21 @@ def printprimeros3artistasyobras(lista, size):
             fecha = obra['Date']
             medio = obra['Medium']
             dimensiones = obra['Dimensions']
-            cadenaArtista=""
+            cadenaArtista = ""
             for artistas in lt.iterator(obra['artists']):
-                artista=artistas['DisplayName']
-                if cadenaArtista=="":
-                    cadenaArtista+=artista
+                artista = artistas['DisplayName']
+                if cadenaArtista == "":
+                    cadenaArtista += artista
                 else:
-                    cadenaArtista+=", "+artista
-            if fecha=="":
-                fecha="Unknown"
-            if medio=="":
-                medio="Unknown"
-            if dimensiones=="":
-                dimensiones='Unknown'     
-            if cadenaArtista=="":
-                cadenaArtista="Unknown"   
+                    cadenaArtista += ", "+artista
+            if fecha == "":
+                fecha = "Unknown"
+            if medio == "":
+                medio = "Unknown"
+            if dimensiones == "":
+                dimensiones = 'Unknown'
+            if cadenaArtista == "":
+                cadenaArtista = "Unknown"
 
             print(str(i)+". " + "Titulo: " + titulo + ", Artista(s): " + cadenaArtista + ", Fecha: "
                   + fecha + ", Medio: " + medio
@@ -190,33 +190,34 @@ def printprimeros3artistasyobras(lista, size):
             fecha = obra['Date']
             medio = obra['Medium']
             dimensiones = obra['Dimensions']
-            cadenaArtista=""
+            cadenaArtista = ""
             for artistas in lt.iterator(obra['artists']):
-                artista=artistas['DisplayName']
-                if cadenaArtista=="":
-                    cadenaArtista+=artista
+                artista = artistas['DisplayName']
+                if cadenaArtista == "":
+                    cadenaArtista += artista
                 else:
-                    cadenaArtista+=", "+artista
+                    cadenaArtista += ", "+artista
 
-            if fecha=="":
-                fecha="Unknown"
-            if medio=="":
-                medio="Unknown"
-            if dimensiones=="":
-                dimensiones='Unknown'     
-            if cadenaArtista=="":
-                cadenaArtista="Unknown"  
-            
+            if fecha == "":
+                fecha = "Unknown"
+            if medio == "":
+                medio = "Unknown"
+            if dimensiones == "":
+                dimensiones = 'Unknown'
+            if cadenaArtista == "":
+                cadenaArtista = "Unknown"
+
             print(str(i)+". " + "Titulo:" + titulo + ", Artista(s): " + cadenaArtista + ", Fecha: "
                   + fecha + ", Medio: " + medio
                   + ", Dimensiones: " + dimensiones)
             i += 1
         print('...')
-    
+
     else:
         return None
 
-def printUltimos3ArtistasyObras(lista,size):
+
+def printUltimos3ArtistasyObras(lista, size):
     if size >= 3:
         print("Los últimos 3 Artistas son: ")
         i = size-2
@@ -226,23 +227,23 @@ def printUltimos3ArtistasyObras(lista,size):
             fecha = obra['Date']
             medio = obra['Medium']
             dimensiones = obra['Dimensions']
-            cadenaArtista=""
+            cadenaArtista = ""
             for artistas in lt.iterator(obra['artists']):
-                artista=artistas['DisplayName']
-                if cadenaArtista=="":
-                    cadenaArtista+=artista
+                artista = artistas['DisplayName']
+                if cadenaArtista == "":
+                    cadenaArtista += artista
                 else:
-                    cadenaArtista+=", "+artista
+                    cadenaArtista += ", "+artista
 
-            if fecha=="":
-                fecha="Unknown"
-            if medio=="":
-                medio="Unknown"
-            if dimensiones=="":
-                dimensiones='Unknown'     
-            if cadenaArtista=="":
-                cadenaArtista="Unknown"  
-            
+            if fecha == "":
+                fecha = "Unknown"
+            if medio == "":
+                medio = "Unknown"
+            if dimensiones == "":
+                dimensiones = 'Unknown'
+            if cadenaArtista == "":
+                cadenaArtista = "Unknown"
+
             print(str(i)+". " + "Titulo:" + titulo + ", Artista(s): " + cadenaArtista + ", Fecha: "
                   + fecha + ", Medio: " + medio
                   + ", Dimensiones: " + dimensiones)
@@ -252,30 +253,30 @@ def printUltimos3ArtistasyObras(lista,size):
             print("La última Obra es: ")
         if size == 2:
             print("Los últimos 2 Artistas son: ")
-        i=1
-        while i<=size:
+        i = 1
+        while i <= size:
             obra = lt.getElement(lista, i)
             titulo = obra['Title']
             fecha = obra['Date']
             medio = obra['Medium']
             dimensiones = obra['Dimensions']
-            cadenaArtista=""
+            cadenaArtista = ""
             for artistas in lt.iterator(obra['artists']):
-                artista=artistas['DisplayName']
-                if cadenaArtista=="":
-                    cadenaArtista+=artista
+                artista = artistas['DisplayName']
+                if cadenaArtista == "":
+                    cadenaArtista += artista
                 else:
-                    cadenaArtista+=", "+artista
+                    cadenaArtista += ", "+artista
 
-            if fecha=="":
-                fecha="Unknown"
-            if medio=="":
-                medio="Unknown"
-            if dimensiones=="":
-                dimensiones='Unknown'     
-            if cadenaArtista=="":
-                cadenaArtista="Unknown"  
-            
+            if fecha == "":
+                fecha = "Unknown"
+            if medio == "":
+                medio = "Unknown"
+            if dimensiones == "":
+                dimensiones = 'Unknown'
+            if cadenaArtista == "":
+                cadenaArtista = "Unknown"
+
             print(str(i)+". " + "Titulo:" + titulo + ", Artista(s): " + cadenaArtista + ", Fecha: "
                   + fecha + ", Medio: " + medio
                   + ", Dimensiones: " + dimensiones)
@@ -283,63 +284,68 @@ def printUltimos3ArtistasyObras(lista,size):
     else:
         None
 
+
 def printTOP10(lista):
-    size=lt.size(lista)
-    if size>10:
-        print("\nLos primeros ", str(10), " paises ordenados por su número de obras son: ")
+    size = lt.size(lista)
+    if size > 10:
+        print("\nLos primeros ", str(10),
+              " paises ordenados por su número de obras son: ")
         i = 1
         while i <= 10:
-            nacionalidades=lt.getElement(lista,i)
-            nacionalidad=nacionalidades['Nationality']
-            conteo=nacionalidades['conteo']
-            print(str(i)+"." + nacionalidad + ': ' +str(conteo))
-            i+=1
+            nacionalidades = lt.getElement(lista, i)
+            nacionalidad = nacionalidades['Nationality']
+            conteo = nacionalidades['conteo']
+            print(str(i)+"." + nacionalidad + ': ' + str(conteo))
+            i += 1
+
 
 def printPrimeras3ObrasNacionalidad(lista):
-    primeraNacionalidad=lt.getElement(lista,1)
-    print('\nEn el primer lugar se encuentra la nacionalidad '+primeraNacionalidad['Nationality']+' con un total de '+
-                                str(primeraNacionalidad['conteo'])+' obras.')
-    i=1
-    while i<=3:
-        obra=lt.getElement(primeraNacionalidad['obrasyArtistas'],i)
-        titulo=obra['Title']
-        fecha=obra['Date']
-        medio=obra['Medium']
-        dimensiones=obra['Dimensions']
-        cadenaArtista=''
+    primeraNacionalidad = lt.getElement(lista, 1)
+    print('\nEn el primer lugar se encuentra la nacionalidad '+primeraNacionalidad['Nationality']+' con un total de ' +
+          str(primeraNacionalidad['conteo'])+' obras.')
+    i = 1
+    while i <= 3:
+        obra = lt.getElement(primeraNacionalidad['obrasyArtistas'], i)
+        titulo = obra['Title']
+        fecha = obra['Date']
+        medio = obra['Medium']
+        dimensiones = obra['Dimensions']
+        cadenaArtista = ''
         for artistas in lt.iterator(obra['artists']):
-            artista=artistas['DisplayName']
-            if cadenaArtista=="":
-                cadenaArtista+=artista
+            artista = artistas['DisplayName']
+            if cadenaArtista == "":
+                cadenaArtista += artista
             else:
-                cadenaArtista+=", "+artista
+                cadenaArtista += ", "+artista
         print(str(i)+'. '+"Titulo: " + titulo + ", Artista(s): " + cadenaArtista + ", Fecha: "
-                  + fecha + ", Medio: " + medio
-                  + ", Dimensiones: " + dimensiones)
-        i+=1
+              + fecha + ", Medio: " + medio
+              + ", Dimensiones: " + dimensiones)
+        i += 1
     print('...')
 
+
 def printUltimas3obrasNacionalidad(lista):
-    primeraNacionalidad=lt.getElement(lista,1)
-    size=lt.size(primeraNacionalidad['obrasyArtistas'])
-    i=size-2
-    while i<=size:
-        obra=lt.getElement(primeraNacionalidad['obrasyArtistas'],i)
-        titulo=obra['Title']
-        fecha=obra['Date']
-        medio=obra['Medium']
-        dimensiones=obra['Dimensions']
-        cadenaArtista=''
+    primeraNacionalidad = lt.getElement(lista, 1)
+    size = lt.size(primeraNacionalidad['obrasyArtistas'])
+    i = size-2
+    while i <= size:
+        obra = lt.getElement(primeraNacionalidad['obrasyArtistas'], i)
+        titulo = obra['Title']
+        fecha = obra['Date']
+        medio = obra['Medium']
+        dimensiones = obra['Dimensions']
+        cadenaArtista = ''
         for artistas in lt.iterator(obra['artists']):
-            artista=artistas['DisplayName']
-            if cadenaArtista=="":
-                cadenaArtista+=artista
+            artista = artistas['DisplayName']
+            if cadenaArtista == "":
+                cadenaArtista += artista
             else:
-                cadenaArtista+=", "+artista
+                cadenaArtista += ", "+artista
         print(str(i)+'. '+"Titulo: " + titulo + ", Artista(s): " + cadenaArtista + ", Fecha: "
-                  + fecha + ", Medio: " + medio
-                  + ", Dimensiones: " + dimensiones)
-        i+=1
+              + fecha + ", Medio: " + medio
+              + ", Dimensiones: " + dimensiones)
+        i += 1
+
 
 catalog = None
 
@@ -384,7 +390,6 @@ while True:
               + " es: " + str(resultado[2]))
         printPrimeros3Artistas(resultado[1], resultado[2])
         ultimos3Artistas(resultado[1], resultado[2])
-        
 
     elif int(inputs[0]) == 3:
         anho_inicial = input("\nIngrese la fecha inicial (AAAA-MM-DD): ")
@@ -396,9 +401,8 @@ while True:
             catalog, anho_inicial, anho_final)
         print('\nNúmero total de obras en el rango: ' + str(resultado[2]))
         print('Número total de compras: '+str(resultado[3]))
-        printprimeros3artistasyobras(resultado[1],resultado[2])
-        printUltimos3ArtistasyObras(resultado[1],resultado[2])
-        
+        printprimeros3artistasyobras(resultado[1], resultado[2])
+        printUltimos3ArtistasyObras(resultado[1], resultado[2])
 
     elif int(inputs[0]) == 4:
         nombre_artista = input('\nIngrese el nombre del artista: ')
@@ -413,10 +417,19 @@ while True:
         '''alogritmo = input('Seleccione el tipo de Algoritmo \n'
                           + '"I" para Insertion, "S" para Shell, "M" para Merge o'
                           + '"Q" para Quick sort: ')'''
-        resultado=controller.obrasPorNacionalidad(catalog)
+        resultado = controller.obrasPorNacionalidad(catalog)
         printTOP10(resultado)
         printPrimeras3ObrasNacionalidad(resultado)
         printUltimas3obrasNacionalidad(resultado)
+
+    elif int(inputs[0]) == 6:
+        depto = input('\nIngrese el departamento: ')
+        algoritmo = input('Ingrese el algoritmo: ')
+        resultado = (controller.transportarObras(catalog, depto, algoritmo))
+        print('Total de obras a transportar: '+str(resultado[0]))
+        print('Precio estimado del servicio USD: '+str(resultado[1]))
+        print('Peso estimado de las obras: '+str(resultado[2]))
+        print('Tiempo de ejecucion: ' + str(resultado[3]))
 
     else:
         sys.exit(0)

@@ -48,14 +48,14 @@ def loadData(catalog):
 
 
 def loadArtists(catalog):
-    artistsfile = cf.data_dir + 'Artists-utf8-small.csv'
+    artistsfile = cf.data_dir + 'Artists-utf8-10pct.csv'
     input_file = csv.DictReader(open(artistsfile, encoding='utf-8'))
     for artist in input_file:
         model.addArtists(catalog, artist)
 
 
 def loadArtworks(catalog):
-    artworksfile = cf.data_dir + 'Artworks-utf8-small.csv'
+    artworksfile = cf.data_dir + 'Artworks-utf8-10pct.csv'
     input_file = csv.DictReader(open(artworksfile, encoding='utf-8'))
     for artwork in input_file:
         model.addArtworks(catalog, artwork)
@@ -67,6 +67,7 @@ def loadObrasPorArtistas(catalog):
 
 def loadArtistasPorObras(catalog):
     model.addArtistasPorObras(catalog)
+
 
 def loadnacionalidades(catalog):
     model.addNacionalidades(catalog)
@@ -98,6 +99,12 @@ def obrasPorTecnica(catalog, nombre):
     id1 = model.obrasPorTecnica(catalog, nombre)
     return id1
 
+
 def obrasPorNacionalidad(catalog):
-    obrasnacionalidad=model.obrasPorNacionalidad(catalog)
-    return obrasnacionalidad
+    obrasnacionalidad = model.obrasPorNacionalidad(catalog)
+    return
+
+
+def transportarObras(catalog, depto, algoritmo):
+    costo = model.transportarObras(catalog, depto, algoritmo)
+    return costo
