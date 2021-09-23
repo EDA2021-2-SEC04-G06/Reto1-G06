@@ -74,13 +74,13 @@ def loadnacionalidades(catalog):
 # Funciones de ordenamiento
 
 
-def sortArtwork(catalog, anho_inicial, anho_final, algoritmo):
-    return model.sortArtwork(catalog, anho_inicial, anho_final, algoritmo)
+def sortArtwork(catalog, anho_inicial, anho_final):
+    return model.sortArtwork(catalog, anho_inicial, anho_final)
 
 
-def sortArtist(catalog, anho_inicial, anho_final, algoritmo):
+def sortArtist(catalog, anho_inicial, anho_final):
     artistas_rango = model.sortArtist(
-        catalog, anho_inicial, anho_final, algoritmo)
+        catalog, anho_inicial, anho_final)
     return artistas_rango
 
 # Funciones de consulta sobre el catálogo
@@ -98,6 +98,6 @@ def obrasPorTecnica(catalog, nombre):
     id1 = model.obrasPorTecnica(catalog, nombre)
     return id1
 
-def obrasPorNacionalidad(catalog,algoritmo):
-    obrasnacionalidad=model.obrasPorNacionalidad(catalog,algoritmo)
+def obrasPorNacionalidad(catalog):
+    obrasnacionalidad=model.obrasPorNacionalidad(catalog)
     return obrasnacionalidad

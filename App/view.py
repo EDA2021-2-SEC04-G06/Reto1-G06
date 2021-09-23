@@ -27,7 +27,7 @@ import sys
 import controller
 from DISClib.ADT import list as lt
 assert cf
-
+sys.setrecursionlimit(1000*10)
 
 """
 La vista se encarga de la interacción con el usuario
@@ -364,7 +364,7 @@ while True:
         print('Artworks finales: '+str(lt.getElement(((catalog['artworks'])), lt.size(catalog['artworks']))) +
               str(lt.getElement(((catalog['artworks'])), int(lt.size(catalog['artworks']))-1)) +
               str(lt.getElement(((catalog['artworks'])), int(lt.size(catalog['artworks']))-2)))
-        print(catalog['artistasPorObras'])
+
         """print('Artista: '+str(lt.getElement(((catalog['artists'])), int(lt.size(catalog['artists'])-1))))
         print('Artista: '+str(lt.getElement(((catalog['artists'])), int(lt.size(catalog['artists'])-2))))"""
 
@@ -375,28 +375,30 @@ while True:
     elif int(inputs[0]) == 2:
         anho_inicial = input("\nIngrese el año incial: ")
         anho_final = input("Ingrese el año final: ")
-        alogritmo = input('Seleccione el tipo de Algoritmo \n'
+        '''alogritmo = input('Seleccione el tipo de Algoritmo \n'
                           + '"I" para Insertion, "S" para Shell, "M" para Merge o'
-                          + '"Q" para Quick sort: ')
+                          + '"Q" para Quick sort: ')'''
         resultado = controller.sortArtist(
-            catalog, anho_inicial, anho_final, alogritmo)
+            catalog, anho_inicial, anho_final)
         print("\nEl número de Artistas nacidos entre " + anho_inicial + " y " + anho_final
               + " es: " + str(resultado[2]))
         printPrimeros3Artistas(resultado[1], resultado[2])
         ultimos3Artistas(resultado[1], resultado[2])
+        
 
     elif int(inputs[0]) == 3:
         anho_inicial = input("\nIngrese la fecha inicial (AAAA-MM-DD): ")
         anho_final = input("Ingrese la fecha final(AAAA-MM-DD): ")
-        alogritmo = input('Seleccione el tipo de Algoritmo \n'
+        '''alogritmo = input('Seleccione el tipo de Algoritmo \n'
                           + '"I" para Insertion, "S" para Shell, "M" para Merge o'
-                          + '"Q" para Quick sort: ')
+                          + '"Q" para Quick sort: ')'''
         resultado = controller.sortArtwork(
-            catalog, anho_inicial, anho_final, alogritmo)
+            catalog, anho_inicial, anho_final)
         print('\nNúmero total de obras en el rango: ' + str(resultado[2]))
         print('Número total de compras: '+str(resultado[3]))
         printprimeros3artistasyobras(resultado[1],resultado[2])
         printUltimos3ArtistasyObras(resultado[1],resultado[2])
+        
 
     elif int(inputs[0]) == 4:
         nombre_artista = input('\nIngrese el nombre del artista: ')
@@ -408,14 +410,14 @@ while True:
               str(resultado[3]))
 
     elif int(inputs[0]) == 5:
-        alogritmo = input('Seleccione el tipo de Algoritmo \n'
+        '''alogritmo = input('Seleccione el tipo de Algoritmo \n'
                           + '"I" para Insertion, "S" para Shell, "M" para Merge o'
-                          + '"Q" para Quick sort: ')
-        resultado=controller.obrasPorNacionalidad(catalog,alogritmo)
+                          + '"Q" para Quick sort: ')'''
+        resultado=controller.obrasPorNacionalidad(catalog)
         printTOP10(resultado)
         printPrimeras3ObrasNacionalidad(resultado)
         printUltimas3obrasNacionalidad(resultado)
-        
+
     else:
         sys.exit(0)
 sys.exit(0)

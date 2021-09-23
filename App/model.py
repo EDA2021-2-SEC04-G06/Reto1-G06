@@ -261,10 +261,10 @@ def cmpObrasNacionalidad(nacionalidad1, nacionalidad2):
 
 # Funciones de ordenamiento
 
-def sortArtwork(catalog, fecha_inicial, fecha_final, algoritmo):
+def sortArtwork(catalog, fecha_inicial, fecha_final):
     sub_list = catalog['artistasPorObras'].copy()
     final_lista = int(lt.size(sub_list))
-    if algoritmo == "I":
+    '''if algoritmo == "I":
         start_time = time.process_time()
         sorted_list = si.sort(sub_list, cmpArtworkByDateAcquired)
         stop_time = time.process_time()
@@ -283,7 +283,12 @@ def sortArtwork(catalog, fecha_inicial, fecha_final, algoritmo):
         start_time = time.process_time()
         sorted_list = sq.sort(sub_list, cmpArtworkByDateAcquired)
         stop_time = time.process_time()
-        elapsed_time_mseg = (stop_time - start_time) * 1000
+        elapsed_time_mseg = (stop_time - start_time) * 1000'''
+
+    start_time = time.process_time()
+    sorted_list = sm.sort(sub_list, cmpArtworkByDateAcquired)
+    stop_time = time.process_time()
+    elapsed_time_mseg = (stop_time - start_time) * 1000
 
     i = 1
     while i <= final_lista:
@@ -347,10 +352,10 @@ def sortArtwork(catalog, fecha_inicial, fecha_final, algoritmo):
     return elapsed_time_mseg, sorted_list2, tamanhoSortedList2, contador
 
 
-def sortArtist(catalog, anho_inicial, anho_final, algoritmo):
+def sortArtist(catalog, anho_inicial, anho_final):
     sub_list = catalog['artists'].copy()
     final_lista = int(lt.size(sub_list))
-    if algoritmo == "I":
+    '''if algoritmo == "I":
         start_time = time.process_time()
         sorted_list = si.sort(sub_list, cmpArtistByBeginDate)
         stop_time = time.process_time()
@@ -359,17 +364,22 @@ def sortArtist(catalog, anho_inicial, anho_final, algoritmo):
         start_time = time.process_time()
         sorted_list = sa.sort(sub_list, cmpArtistByBeginDate)
         stop_time = time.process_time()
-        elapsed_time_mseg = (stop_time - start_time) * 1000
-    elif algoritmo == "M":
+        elapsed_time_mseg = (stop_time - start_time) * 1000'''
+    '''elif algoritmo == "M":
         start_time = time.process_time()
         sorted_list = sm.sort(sub_list, cmpArtistByBeginDate)
         stop_time = time.process_time()
-        elapsed_time_mseg = (stop_time - start_time) * 1000
-    elif algoritmo == "Q":
+        elapsed_time_mseg = (stop_time - start_time) * 1000'''
+    '''elif algoritmo == "Q":
         start_time = time.process_time()
         sorted_list = sq.sort(sub_list, cmpArtistByBeginDate)
         stop_time = time.process_time()
-        elapsed_time_mseg = (stop_time - start_time) * 1000
+        elapsed_time_mseg = (stop_time - start_time) * 1000'''
+
+    start_time = time.process_time()
+    sorted_list = sm.sort(sub_list, cmpArtistByBeginDate)
+    stop_time = time.process_time()
+    elapsed_time_mseg = (stop_time - start_time) * 1000
 
     i = 1
     while i <= final_lista:
@@ -395,9 +405,9 @@ def sortArtist(catalog, anho_inicial, anho_final, algoritmo):
     return elapsed_time_mseg, sorted_list_2, tamanhoSortedList2
 
 
-def mayorConteo(sub_list,algoritmo):
+def mayorConteo(sub_list):
 
-    if algoritmo == "I":
+    '''if algoritmo == "I":
         start_time = time.process_time()
         sorted_list = si.sort(sub_list, cmpObrasNacionalidad)
         stop_time = time.process_time()
@@ -416,9 +426,13 @@ def mayorConteo(sub_list,algoritmo):
         start_time = time.process_time()
         sorted_list = sq.sort(sub_list, cmpObrasNacionalidad)
         stop_time = time.process_time()
-        elapsed_time_mseg = (stop_time - start_time) * 1000
+        elapsed_time_mseg = (stop_time - start_time) * 1000'''
 
-    
+    start_time = time.process_time()
+    sorted_list = sm.sort(sub_list, cmpObrasNacionalidad)
+    stop_time = time.process_time()
+    elapsed_time_mseg = (stop_time - start_time) * 1000
+
     return elapsed_time_mseg ,sorted_list
 
 
@@ -464,9 +478,10 @@ def obrasPorTecnica(catalog, nombre):
 
     return totalObras, totalTecnicas, tecnicaMasUsada, obrasTecnicaMasUsada
 
-def obrasPorNacionalidad(catalog,algoritmo):
+def obrasPorNacionalidad(catalog):
     subList=catalog['nacionalidades'].copy()
-    sortedList=mayorConteo(subList,algoritmo)
+    sortedList=mayorConteo(subList)
+    
     
             
     return sortedList[1]
